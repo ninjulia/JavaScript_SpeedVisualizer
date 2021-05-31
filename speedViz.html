@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <title>Internet Download Speed Visualizer | Julia Czarnecki | Design | Code | Digital</title>
+
+      <!-- Bootstrap core CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <link rel="stylesheet" href="speedViz.css" >
+  </head>
+
+  <body>
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-images" viewBox="0 0 36 32">
+<title>images</title>
+<path d="M34 4h-2v-2c0-1.1-0.9-2-2-2h-28c-1.1 0-2 0.9-2 2v24c0 1.1 0.9 2 2 2h2v2c0 1.1 0.9 2 2 2h28c1.1 0 2-0.9 2-2v-24c0-1.1-0.9-2-2-2zM4 6v20h-1.996c-0.001-0.001-0.003-0.002-0.004-0.004v-23.993c0.001-0.001 0.002-0.003 0.004-0.004h27.993c0.001 0.001 0.003 0.002 0.004 0.004v1.996h-24c-1.1 0-2 0.9-2 2v0zM34 29.996c-0.001 0.001-0.002 0.003-0.004 0.004h-27.993c-0.001-0.001-0.003-0.002-0.004-0.004v-23.993c0.001-0.001 0.002-0.003 0.004-0.004h27.993c0.001 0.001 0.003 0.002 0.004 0.004v23.993z"></path>
+<path d="M30 11c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z"></path>
+<path d="M32 28h-24v-4l7-12 8 10h2l7-6z"></path>
+</symbol>
+<symbol id="icon-file-music" viewBox="0 0 32 32">
+<title>file-music</title>
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.121 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841v0zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268v0zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23.634 12.227c-0.232-0.19-0.536-0.266-0.83-0.207l-10 2c-0.467 0.094-0.804 0.504-0.804 0.981v7.402c-0.588-0.255-1.271-0.402-2-0.402-2.209 0-4 1.343-4 3s1.791 3 4 3 4-1.343 4-3v-7.18l8-1.6v4.183c-0.588-0.255-1.271-0.402-2-0.402-2.209 0-4 1.343-4 3s1.791 3 4 3 4-1.343 4-3v-10c0-0.3-0.134-0.583-0.366-0.773z"></path>
+</symbol>
+<symbol id="icon-file-video" viewBox="0 0 32 32">
+<title>file-video</title>
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.394-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.121 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841v0 0zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268v0 0zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M8 16h10v10h-10v-10z"></path>
+<path d="M18 20l6-4v10l-6-4z"></path>
+</symbol>
+<symbol id="icon-file-zip" viewBox="0 0 32 32">
+<title>file-zip</title>
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.121 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841v0 0zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268v0 0zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M8 2h4v2h-4v-2z"></path>
+<path d="M12 4h4v2h-4v-2z"></path>
+<path d="M8 6h4v2h-4v-2z"></path>
+<path d="M12 8h4v2h-4v-2z"></path>
+<path d="M8 10h4v2h-4v-2z"></path>
+<path d="M12 12h4v2h-4v-2z"></path>
+<path d="M8 14h4v2h-4v-2z"></path>
+<path d="M12 16h4v2h-4v-2z"></path>
+<path d="M8 26.5c0 0.825 0.675 1.5 1.5 1.5h5c0.825 0 1.5-0.675 1.5-1.5v-5c0-0.825-0.675-1.5-1.5-1.5h-2.5v-2h-4v8.5zM14 24v2h-4v-2h4z"></path>
+</symbol>
+</defs>
+</svg>
+      <main role="main" class="container">
+          <section class="row">
+              <div class="col-md-10 shadow border mx-auto mt-5 rounded p-5">
+                  <div class="container m-0 p-0">
+                    <div class="row">
+                        <div class="col-10">
+                            <h1>Compare the Speeds!</h1>
+                            <p class="mb-3" id="description">Click a download type to see how much time you can save with high speed internet from Shentel.</p>
+                        </div>
+                        <div class="col-2" id="desc-icon"></div>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-column-reverse flex-lg-column">
+                      <div>
+                          <!-- 50 MBPS -->
+                          <div class="container loaders loaders-buy">
+                              <div class="row py-3 rounded border border-primary d-flex align-items-center">
+                                  <div class="col-md-2 info">
+                                      <div class="one">
+                                          <h5>50 Mbps</h5>
+                                          <p>50/10Mbps</p>
+                                      </div>
+                                      <div class="two">
+                                          <a class="btn btn-primary btn-sm" href="#">Learn More</a>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-10">
+                                      <span class="load-time" id="time_1"></span>
+                                      <div class="holder rounded">
+                                          <div id="loader_1" class="holder-bar rounded"></div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- 25 MBPS -->
+                          <div class="container loaders loaders-buy">
+                              <div class="row py-3 rounded border d-flex align-items-center">
+                                  <div class="col-md-2 info">
+                                      <div class="one">
+                                          <h5>25 Mbps</h5>
+                                          <p>25/5Mbps</p>
+                                      </div>
+                                      <div class="two">
+                                          <a class="btn btn-primary btn-sm" href="#">Learn More</a>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-10">
+                                      <span class="load-time" id="time_2"></span>
+                                      <div class="holder rounded">
+                                          <div id="loader_2" class="holder-bar rounded"></div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- 15 MBPS -->
+                          <div class="container loaders loaders-buy">
+                              <div class="row py-3 rounded border d-flex align-items-center">
+                                  <div class="col-md-2 info">
+                                      <div class="one">
+                                          <h5>15 Mbps</h5>
+                                          <p>15/3Mbps</p>
+                                      </div>
+                                      <div class="two">
+                                          <a class="btn btn-primary btn-sm" href="#">Learn More</a>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-10">
+                                      <span class="load-time" id="time_3"></span>
+                                      <div class="holder rounded">
+                                          <div id="loader_3" class="holder-bar rounded"></div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- 10 MBPS -->
+                          <div class="container loaders loaders-buy">
+                              <div class="row py-3 rounded border d-flex align-items-center">
+                                  <div class="col-md-2 info">
+                                      <div class="one">
+                                          <h5>10 Mbps</h5>
+                                          <p>10/2Mbps</p>
+                                      </div>
+                                      <div class="two">
+                                          <a class="btn btn-primary btn-sm" href="#">Learn More</a>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-10">
+                                      <span class="load-time" id="time_4"></span>
+                                      <div class="holder rounded">
+                                          <div id="loader_4" class="holder-bar rounded"></div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- DSL -->
+                          <div class="container loaders">
+                              <div class="row py-3 rounded border d-flex align-items-center">
+                                  <div class="col-md-2 info">
+                                      <div class="one">
+                                          <h5>DSL</h5>
+                                          <p>768/512Kbps</p>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-10">
+                                      <span class="load-time" id="time_5"></span>
+                                      <div class="holder rounded">
+                                          <div id="loader_5" class="holder-bar rounded"></div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                  <!-- Button Group -->
+                  <div id="buttonRow" class="col-12 btn-group btn-group-toggle mx-auto py-3" data-toggle="buttons">
+                      <label id="musicButton" class="btn btn-secondary">
+                          <input type="radio" name="music" value="music">
+                          <svg class="icon icon-images">
+                              <use xlink:href="#icon-file-music"></use>
+                          </svg>&nbsp;&nbsp;Music
+                      </label>
+                      <label class="btn btn-secondary" id="gamesButton">
+                          <input type="radio" name="games" value="games">
+                          <svg class="icon icon-images">
+                              <use xlink:href="#icon-file-zip"></use>
+                          </svg>&nbsp;&nbsp;Games
+                      </label>
+                      <label id="moviesButton" class="btn btn-secondary">
+                          <input type="radio" name="movies" value="movies">
+                          <svg class="icon icon-images">
+                              <use xlink:href="#icon-file-video"></use>
+                          </svg>&nbsp;&nbsp;Movies
+                      </label>
+                      <label class="btn btn-secondary" id="photosButton">
+                          <input type="radio" name="photos" value="photos">
+                          <svg class="icon icon-images">
+                              <use xlink:href="#icon-images"></use>
+                          </svg>&nbsp;&nbsp;Photos
+                      </label>
+                  </div>
+                </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="modalPop" tabindex="-1" role="dialog" aria-labelledby="Waiting on DSL" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick="clearOut()">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body container">
+                                    <h3>Don't let DSL keep you waiting</h3>
+                                    <p>High speed internet from Shentel is up to <strong>50 TIMES FASTER</strong> than DSL.</p>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"  onClick="clearOut()">Keep Comparing</button>
+                                    <a href="#" class="btn btn-primary">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+              </div>
+              <div class="col-md-10 mx-auto p-5">
+                  <p>*Download speeds simulated. Actual speeds vary and are not guaranteed. Speed comparison between Shentel service and standard 768Kbps DSL (downloads only). Download times obtained from <a href="http://www.downloadtime.com/" target="_blank" rel="nofollow">downloadtime.com</a>.</p>
+              </div>
+          </section>
+      </main>
+
+
+           <!-- Bootstrap core JavaScript
+    ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="speedViz.js"></script>
+
+  </body>
+</html>
