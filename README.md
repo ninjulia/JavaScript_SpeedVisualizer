@@ -9,7 +9,7 @@ This code example was developed for a regional cable and internet provider who w
   - [Screenshot](#screenshot)
   - [Links](#links)
 - [Built with](#built-with)
-- [Acknowledgments](#acknowledgments)
+- [Attributions](#attributions)
 
 ## Overview
 
